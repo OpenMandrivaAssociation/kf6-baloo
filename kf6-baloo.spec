@@ -1,0 +1,96 @@
+%define libname %mklibname KF6Baloo
+%define devname %mklibname KF6Baloo -d
+%define git 20230513
+
+Name: kf6-baloo
+Version: 5.240.0
+Release: %{?git:0.%{git}.}1
+Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
+Summary: Baloo is the file indexing and file search framework for KDE Plasma
+URL: https://invent.kde.org/frameworks/baloo
+License: CC0-1.0 LGPL-2.0+ LGPL-2.1 LGPL-3.0
+Group: System/Libraries
+BuildRequires: cmake
+BuildRequires: cmake(ECM)
+BuildRequires: python
+BuildRequires: cmake(Qt6DBusTools)
+BuildRequires: cmake(Qt6DBus)
+BuildRequires: cmake(Qt6Network)
+BuildRequires: cmake(Qt6Test)
+BuildRequires: cmake(Qt6QmlTools)
+BuildRequires: cmake(Qt6Qml)
+BuildRequires: cmake(Qt6GuiTools)
+BuildRequires: cmake(Qt6QuickTest)
+BuildRequires: cmake(Qt6DBusTools)
+BuildRequires: doxygen
+BuildRequires: cmake(Qt6ToolsTools)
+BuildRequires: cmake(Qt6)
+BuildRequires: cmake(Qt6QuickTest)
+BuildRequires: cmake(KF6IdleTime)
+BuildRequires: cmake(KF6FileMetaData)
+Requires: %{libname} = %{EVRD}
+
+%description
+Baloo is the file indexing and file search framework for KDE Plasma.
+
+%package -n %{libname}
+Summary: Baloo is the file indexing and file search framework for KDE Plasma
+Group: System/Libraries
+Requires: %{name} = %{EVRD}
+
+%description -n %{libname}
+Baloo is the file indexing and file search framework for KDE Plasma.
+
+%package -n %{devname}
+Summary: Development files for %{name}
+Group: Development/C
+Requires: %{libname} = %{EVRD}
+
+%description -n %{devname}
+Development files (Headers etc.) for %{name}.
+
+Baloo is the file indexing and file search framework for KDE Plasma.
+
+%prep
+%autosetup -p1 -n baloo-%{?git:master}%{!?git:%{version}}
+%cmake \
+	-DBUILD_QCH:BOOL=ON \
+	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
+	-G Ninja
+
+%build
+%ninja_build -C build
+
+%install
+%ninja_install -C build
+
+%find_lang %{name} --all-name --with-qt --with-html
+
+%files -f %{name}.lang
+%{_datadir}/qlogging-categories6/baloo.*
+%{_sysconfdir}/xdg/autostart/baloo_file6.desktop
+%{_bindir}/balooctl6
+%{_bindir}/baloosearch6
+%{_bindir}/balooshow6
+%{_prefix}/lib/systemd/user/kde-baloo.service
+%{_datadir}/dbus-1/interfaces/org.kde.BalooWatcherApplication.xml
+%{_datadir}/dbus-1/interfaces/org.kde.baloo.file.indexer.xml
+%{_datadir}/dbus-1/interfaces/org.kde.baloo.fileindexer.xml
+%{_datadir}/dbus-1/interfaces/org.kde.baloo.main.xml
+%{_datadir}/dbus-1/interfaces/org.kde.baloo.scheduler.xml
+
+%files -n %{devname}
+%{_includedir}/KF6/Baloo
+%{_libdir}/cmake/KF6Baloo
+%{_qtdir}/mkspecs/modules/qt_Baloo.pri
+%{_qtdir}/doc/KF6Baloo.*
+%{_libdir}/pkgconfig/KF6Baloo.pc
+
+%files -n %{libname}
+%{_libdir}/libKF6Baloo.so*
+%{_libdir}/libKF6BalooEngine.so*
+%{_libdir}/libexec/kf6/baloo_file
+%{_libdir}/libexec/kf6/baloo_file_extractor
+%{_qtdir}/plugins/kf6/kded/*
+%{_qtdir}/plugins/kf6/kio/*
+%{_qtdir}/qml/org/kde/baloo
