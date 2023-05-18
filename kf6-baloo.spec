@@ -36,6 +36,7 @@ BuildRequires: cmake(KF6I18n)
 BuildRequires: cmake(KF6Solid)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6KIO)
+BuildRequires: pkgconfig(lmdb)
 Requires: %{libname} = %{EVRD}
 
 %description
