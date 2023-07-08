@@ -37,6 +37,8 @@ BuildRequires: cmake(KF6Solid)
 BuildRequires: cmake(KF6Crash)
 BuildRequires: cmake(KF6KIO)
 BuildRequires: pkgconfig(lmdb)
+# Just to prevent installing the Plasma 5 version
+BuildRequires: plasma6-xdg-desktop-portal-kde
 Requires: %{libname} = %{EVRD}
 
 %description
