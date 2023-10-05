@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Baloo
 %define devname %mklibname KF6Baloo -d
-%define git 20230927
+%define git 20231005
 
 Name: kf6-baloo
 Version: 5.240.0
@@ -93,7 +93,6 @@ Baloo is the file indexing and file search framework for KDE Plasma.
 %files -n %{devname}
 %{_includedir}/KF6/Baloo
 %{_libdir}/cmake/KF6Baloo
-%{_qtdir}/mkspecs/modules/qt_Baloo.pri
 %{_qtdir}/doc/KF6Baloo.*
 %{_libdir}/pkgconfig/KF6Baloo.pc
 
