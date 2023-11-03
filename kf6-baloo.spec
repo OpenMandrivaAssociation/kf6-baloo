@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Baloo
 %define devname %mklibname KF6Baloo -d
-%define git 20231023
+%define git 20231103
 
 Name: kf6-baloo
 Version: 5.240.0
