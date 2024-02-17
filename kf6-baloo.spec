@@ -2,10 +2,10 @@
 
 %define libname %mklibname KF6Baloo
 %define devname %mklibname KF6Baloo -d
-#define git 20231103
+%define git 20240217
 
 Name: kf6-baloo
-Version: 5.249.0
+Version: 5.250.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
