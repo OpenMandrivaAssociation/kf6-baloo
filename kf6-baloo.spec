@@ -6,7 +6,7 @@
 #define git 20240217
 
 Name: kf6-baloo
-Version: 6.16.0
+Version: 6.17.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
