@@ -6,7 +6,7 @@
 #define git 20240217
 
 Name: kf6-baloo
-Version: 6.28.0
+Version: 6.29.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
@@ -90,6 +90,7 @@ Baloo is the file indexing and file search framework for KDE Plasma.
 %{_bindir}/baloosearch6
 %{_bindir}/balooshow6
 %{_prefix}/lib/systemd/user/kde-baloo.service
+%{_datadir}/config.kcfg/baloosettings.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.BalooWatcherApplication.xml
 %{_datadir}/dbus-1/interfaces/org.kde.baloo.file.indexer.xml
 %{_datadir}/dbus-1/interfaces/org.kde.baloo.fileindexer.xml
