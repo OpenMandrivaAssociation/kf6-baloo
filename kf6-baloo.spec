@@ -7,12 +7,14 @@
 
 Name: kf6-baloo
 Version: 6.31.0
-Release: %{?git:0.%{git}.}1
+Release: %{?git:0.%{git}.}2
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
 %else
 Source0: https://download.kde.org/%{stable}/frameworks/%{major}/baloo-%{version}.tar.xz
 %endif
+# 096b0d3f7166 is not in 6.31.0. Wait for a compositor before indexing.
+Patch0: baloo-6.31.0-after-graphical-session.patch
 Summary: Baloo is the file indexing and file search framework for KDE Plasma
 URL: https://invent.kde.org/frameworks/baloo
 License: CC0-1.0 LGPL-2.0+ LGPL-2.1 LGPL-3.0
