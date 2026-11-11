@@ -7,13 +7,15 @@
 
 Name: kf6-baloo
 Version: 6.31.0
-Release: %{?git:0.%{git}.}2
+Release: %{?git:0.%{git}.}3
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/baloo/-/archive/master/baloo-master.tar.bz2#/baloo-%{git}.tar.bz2
 %else
 Source0: https://download.kde.org/%{stable}/frameworks/%{major}/baloo-%{version}.tar.xz
 %endif
 # 096b0d3f7166 is not in 6.31.0. Wait for a compositor before indexing.
+# Plasma 6.8 Wants=kde-baloo.service from plasma-workspace.target. Also order
+# after that target, or the graphical-session After= cycles and the start job is deleted.
 Patch0: baloo-6.31.0-after-graphical-session.patch
 Summary: Baloo is the file indexing and file search framework for KDE Plasma
 URL: https://invent.kde.org/frameworks/baloo

@@ -9,19 +9,24 @@ compositor to avoid crashing the extractor on neither working wayland or
 x11 sockets. as such, order the service after the core session target
 has been reached
 ---
- src/file/kde-baloo.service.in | 2 ++
- 1 file changed, 2 insertions(+)
+ src/file/kde-baloo.service.in | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/src/file/kde-baloo.service.in b/src/file/kde-baloo.service.in
 index ddb698e5..e0f39606 100644
 --- a/src/file/kde-baloo.service.in
 +++ b/src/file/kde-baloo.service.in
-@@ -1,6 +1,8 @@
+@@ -1,6 +1,13 @@
  [Unit]
  Description=Baloo File Indexer Daemon
  PartOf=graphical-session.target
 +# We need the compositor to be running since we fork QGuiApplications.
-+After=graphical-session.target
++# plasma-workspace.target Wants= this unit, which orders that target After= us.
++# After=graphical-session.target then cycles
++# (kde-baloo -> graphical-session -> plasma-workspace -> kde-baloo) and systemd
++# deletes the start job. After=plasma-workspace.target is the order Plasma 6.9
++# expects; 6.9 drops the Wants=. Needed while Plasma still wants this unit.
++After=graphical-session.target plasma-workspace.target
  
  [Service]
  ExecStart=@KDE_INSTALL_FULL_LIBEXECDIR_KF@/baloo_file
