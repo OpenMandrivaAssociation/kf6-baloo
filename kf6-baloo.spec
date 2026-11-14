@@ -92,7 +92,10 @@ Baloo is the file indexing and file search framework for KDE Plasma.
 %{_bindir}/baloosearch6
 %{_bindir}/balooshow6
 %{_prefix}/lib/systemd/user/kde-baloo.service
+%{_prefix}/lib/systemd/user/kde-baloo-idle-monitor.service
 %{_datadir}/config.kcfg/baloosettings.kcfg
+%{_datadir}/dbus-1/services/org.kde.baloo.service
+%{_datadir}/dbus-1/services/org.kde.baloo_idle_monitor.service
 %{_datadir}/dbus-1/interfaces/org.kde.BalooWatcherApplication.xml
 %{_datadir}/dbus-1/interfaces/org.kde.baloo.file.indexer.xml
 %{_datadir}/dbus-1/interfaces/org.kde.baloo.fileindexer.xml
@@ -109,6 +112,7 @@ Baloo is the file indexing and file search framework for KDE Plasma.
 %{_libdir}/libKF6BalooEngine.so*
 %{_libdir}/libexec/kf6/baloo_file
 %{_libdir}/libexec/kf6/baloo_file_extractor
+%{_libdir}/libexec/kf6/baloo_idle_monitor
 %{_qtdir}/plugins/kf6/kded/*
 %{_qtdir}/plugins/kf6/kio/*
 %{_qtdir}/qml/org/kde/baloo
